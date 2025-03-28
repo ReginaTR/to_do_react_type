@@ -1,7 +1,26 @@
+import { useState } from 'react'
 import './App.css'
+import classNames from 'classnames'
 
-const App = () => (
-  <>
+type TaskType = {
+  id: number,
+  title: string,
+  done: boolean
+}
+
+const TASKS: TaskType[] = [
+  {id: 1, title: "A", done: true},
+  {id: 2, title: "B", done: false},
+  {id: 3, title: "C", done: true}
+] 
+
+
+const App = () => {
+
+  const [tasks, setTasks] = useState(TASKS)
+
+  return (
+    <>
     <section className='todoapp'>
       <header className='header'>
         <h1>todos</h1>
@@ -12,22 +31,17 @@ const App = () => (
         <input id='toggle-all' className='toggle-all' type='checkbox' />
         <label htmlFor='toggle-all'>Mark all as complete</label>
         <ul className='todo-list'>
-          <li className='completed'>
+        {tasks.map(task => 
+          <li className={classNames({completed: task.done})}>
             <div className='view'>
-              <input className='toggle' type='checkbox' />
-              <label>Taste JavaScript</label>
+              <input className='toggle' type='checkbox' checked={task.done}/>
+              <label>{task.title}</label>
               <button className='destroy'></button>
             </div>
             <input className='edit' value='Taste JavaScript' />
           </li>
-          <li>
-            <div className='view'>
-              <input className='toggle' type='checkbox' />
-              <label>Buy a unicorn</label>
-              <button className='destroy'></button>
-            </div>
-            <input className='edit' value='Buy a unicorn' />
-          </li>
+        )}
+          
         </ul>
       </section>
 
@@ -64,8 +78,9 @@ const App = () => (
         Part of <a href='http://todomvc.com'>TodoMVC</a>
       </p>
     </footer>
+  
   </>
-)
+)}
 
 
 export default App
