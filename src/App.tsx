@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => (
+  <>
+    <section className='todoapp'>
+      <header className='header'>
+        <h1>todos</h1>
+        <input className='new-todo' placeholder='What needs to be done?' autoFocus />
+      </header>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <section className='main'>
+        <input id='toggle-all' className='toggle-all' type='checkbox' />
+        <label htmlFor='toggle-all'>Mark all as complete</label>
+        <ul className='todo-list'>
+          <li className='completed'>
+            <div className='view'>
+              <input className='toggle' type='checkbox' />
+              <label>Taste JavaScript</label>
+              <button className='destroy'></button>
+            </div>
+            <input className='edit' value='Taste JavaScript' />
+          </li>
+          <li>
+            <div className='view'>
+              <input className='toggle' type='checkbox' />
+              <label>Buy a unicorn</label>
+              <button className='destroy'></button>
+            </div>
+            <input className='edit' value='Buy a unicorn' />
+          </li>
+        </ul>
+      </section>
+
+      <footer className='footer'>
+        <span className='todo-count'>
+          <strong>0</strong> item left
+        </span>
+        <ul className='filters'>
+          <li>
+            <a className='selected' href='#/'>
+              All
+            </a>
+          </li>
+          <li>
+            <a href='#/active'>Active</a>
+          </li>
+          <li>
+            <a href='#/completed'>Completed</a>
+          </li>
+        </ul>
+        <button className='clear-completed'>Clear completed</button>
+      </footer>
+    </section>
+
+    <footer className='info'>
+      <p>Double-click to edit a todo</p>
+      <p>
+        Template by <a href='http://sindresorhus.com'>Sindre Sorhus</a>
       </p>
-    </>
-  )
-}
+      <p>
+        Created by <a href='http://todomvc.com'>you</a>
+      </p>
+      <p>
+        Part of <a href='http://todomvc.com'>TodoMVC</a>
+      </p>
+    </footer>
+  </>
+)
+
 
 export default App
