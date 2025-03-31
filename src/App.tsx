@@ -19,6 +19,10 @@ const App = () => {
 
   const [tasks, setTasks] = useState(TASKS)
 
+  const handleDeleteTask = (taskToDestry: TaskType) => () => {
+    alert(taskToDestry.id)
+  }
+
   return (
     <>
     <section className='todoapp'>
@@ -36,7 +40,7 @@ const App = () => {
             <div className='view'>
               <input className='toggle' type='checkbox' checked={task.done}/>
               <label>{task.title}</label>
-              <button className='destroy'></button>
+              <button className='destroy' onClick={handleDeleteTask(task)}></button>
             </div>
             <input className='edit' value='Taste JavaScript' />
           </li>
